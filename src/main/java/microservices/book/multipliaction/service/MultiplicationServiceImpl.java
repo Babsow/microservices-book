@@ -3,6 +3,7 @@ package microservices.book.multipliaction.service;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import microservices.book.multipliaction.domain.Multiplication;
+import microservices.book.multipliaction.domain.MultiplicationResultAttempt;
 
 public class MultiplicationServiceImpl implements MultiplicationService{
   
@@ -19,5 +20,10 @@ public class MultiplicationServiceImpl implements MultiplicationService{
     int factorB = randomGeneratorService.generateRandomFactor();
     
     return new Multiplication(factorA, factorB);
+  }
+
+  @Override
+  public  boolean checkAttempt(final MultiplicationResultAttempt resultAttempt){
+    return false;
   }
 }

@@ -6,11 +6,17 @@ import java.util.stream.IntStream;
 
 import org.junit.Before;
 import org.junit.Test;
+
+import microservices.book.multipliaction.domain.Multiplication;
+import microservices.book.multipliaction.domain.MultiplicationResultAttempt;
+import microservices.book.multipliaction.domain.User;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class RandomGeneratorServiceImplTest {
 
   private RandomGeneratorServiceImpl randomGeneratorServiceImpl;
+  private MultiplicationServiceImpl multiplicationServiceImpl;
 
   @Before 
   public void setUp() {
@@ -26,4 +32,20 @@ public class RandomGeneratorServiceImplTest {
       assertThat(randomFactors).isSubsetOf(IntStream.range(11, 100)
       .boxed().collect(Collectors.toList()));
     }
+
+    @Test 
+    public void chekCorrectAttemptTest(){
+
+      Multiplication multiplication = new Multiplication(50, 60);
+
+      User user = new User("John_doe");
+
+      MultiplicationResultAttempt attempt = new MultiplicationResultAttempt(user, multiplication, 3000);
+
+      boolean attemptResult = multiplicationServiceImpl.checkAttempt(attempt);
+
+      assertThat(attemptResult).isTrue();
+    }
+
+  
 }
