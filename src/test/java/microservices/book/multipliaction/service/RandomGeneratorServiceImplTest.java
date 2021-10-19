@@ -47,5 +47,14 @@ public class RandomGeneratorServiceImplTest {
       assertThat(attemptResult).isTrue();
     }
 
+
+    @Test 
+    public void checkWrongAttemptTest(){
+      Multiplication multiplication = new Multiplication(50, 60);
+      User user = new User("John_doe");
+      MultiplicationResultAttempt attempt = new MultiplicationResultAttempt(user, multiplication, 3010);
+      boolean attemptResult = multiplicationServiceImpl.checkAttempt(attempt);
+      assertThat(attemptResult).isFalse();
+    }
   
 }
