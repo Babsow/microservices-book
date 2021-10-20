@@ -5,6 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import microservices.book.multipliaction.domain.Multiplication;
 import microservices.book.multipliaction.domain.MultiplicationResultAttempt;
 
+
+
 public class MultiplicationServiceImpl implements MultiplicationService{
   
   private RandomGeneratorService randomGeneratorService;
