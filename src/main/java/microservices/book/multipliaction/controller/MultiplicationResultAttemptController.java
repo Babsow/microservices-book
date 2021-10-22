@@ -1,12 +1,16 @@
 package microservices.book.multipliaction.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
+import microservices.book.multipliaction.domain.MultiplicationResultAttempt;
 import microservices.book.multipliaction.service.MultiplicationService;
 
 @RestController
@@ -27,4 +31,9 @@ public class MultiplicationResultAttemptController {
     private final boolean correct ;
   }
   
+  @PostMapping
+  ResponseEntity<ResultResponse> postResult(@RequestBody MultiplicationResultAttempt multiplicationResultAttempt){
+    return ResponseEntity.ok( new ResultResponse(multipliactionService.checkAttempt(multiplicationResultAttempt)));
+  }
+
 }

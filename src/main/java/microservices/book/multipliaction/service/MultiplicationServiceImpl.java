@@ -1,12 +1,13 @@
 package microservices.book.multipliaction.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import microservices.book.multipliaction.domain.Multiplication;
 import microservices.book.multipliaction.domain.MultiplicationResultAttempt;
 
 
-
+@Service
 public class MultiplicationServiceImpl implements MultiplicationService{
   
   private RandomGeneratorService randomGeneratorService;
