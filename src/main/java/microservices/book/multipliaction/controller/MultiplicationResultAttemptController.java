@@ -17,11 +17,11 @@ import microservices.book.multipliaction.service.MultiplicationService;
 @RequestMapping("/results")
 public class MultiplicationResultAttemptController {
 
-  private final MultiplicationService multipliactionService;
+  private final MultiplicationService multiplicationService;
 
   @Autowired
   MultiplicationResultAttemptController(final MultiplicationService multiplicationService){
-    this.multipliactionService = multiplicationService;
+    this.multiplicationService = multiplicationService;
   }
 
   @RequiredArgsConstructor
@@ -32,8 +32,14 @@ public class MultiplicationResultAttemptController {
   }
   
   @PostMapping
-  ResponseEntity<ResultResponse> postResult(@RequestBody MultiplicationResultAttempt multiplicationResultAttempt){
-    return ResponseEntity.ok( new ResultResponse(multipliactionService.checkAttempt(multiplicationResultAttempt)));
+  ResponseEntity<MultiplicationResultAttempt> postResult(@RequestBody MultiplicationResultAttempt multiplicationResultAttempt){
+    boolean isCorrect = multiplicationService.checkAttempt(multiplicationResultAttempt);
+    MultiplicationResultAttempt attemptCpy = new MultiplicationResultAttempt(
+                                             multiplicationResultAttempt.getUser(),
+                                              multiplicationResultAttempt.getMultiplication(),
+                                               multiplicationResultAttempt.getResultAttempt(), isCorrect);       
+
+    return ResponseEntity.ok( attemptCpy);
   }
 
 }
