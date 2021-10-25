@@ -62,6 +62,6 @@ public class MultiplicationServiceImpl implements MultiplicationService{
 
   
   public List<MultiplicationResultAttempt> getStatsForUser(String userAlias){
-    return attempRepository.findTop5ByUserAliasOrderByIdDesc(userAlias)
+    return attempRepository.findTop5ByUserAliasOrderByIdDesc(userAlias);
   }
 }

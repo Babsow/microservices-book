@@ -20,7 +20,7 @@ public class MultiplicationServiceImplTest {
   @Before
   public void setUp(){
     MockitoAnnotations.openMocks(this);
-    multiplicationServiceImpl = new MultiplicationServiceImpl(randomGeneratorService);
+   // multiplicationServiceImpl = new MultiplicationServiceImpl(randomGeneratorService);
   }
   
   @Test
