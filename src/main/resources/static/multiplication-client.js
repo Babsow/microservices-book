@@ -29,6 +29,8 @@ type: 'POST',
 data: JSON.stringify(data),
 contentType: "application/json; charset=utf-8",
 dataType: "json",
+async: false,
+success : false,
 success: function(result){
 if(result.correct) {
 $('.result-message').empty().append("The result is correct! Congratulations!");
