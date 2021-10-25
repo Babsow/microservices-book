@@ -1,5 +1,7 @@
 package microservices.book.multipliaction.repository;
 
+import java.util.List;
+
 import org.springframework.data.repository.CrudRepository;
 
 import microservices.book.multipliaction.domain.MultiplicationResultAttempt;
