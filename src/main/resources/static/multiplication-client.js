@@ -1,7 +1,7 @@
 function updateMultiplication() {
   $.ajax({ url: "http://localhost:8080/multiplications/random"}).then(function(data) {
   // Cleans the form
-  $("#attempt-form").find( "input[name='result-attempt']" ).val("44444444444");
+  $("#attempt-form").find( "input[name='result-attempt']" ).val("");
   $("#attempt-form").find( "input[name='user-alias']" ).val("");
   // Gets a random challenge from API and loads the data in the HTML
   $('.multiplication-a').empty().append(data.factorA);
@@ -23,7 +23,7 @@ function updateMultiplication() {
 + '</td></tr>');
 });
 });
-  }
+}
   $(document).ready(function() {
   updateMultiplication();
   $("#attempt-form").submit(function( event ) {
@@ -32,8 +32,8 @@ function updateMultiplication() {
   // Get some values from elements on the page
   var a = $('.multiplication-a').text();
   var b = $('.multiplication-b').text();
-  var $form = $( this ),
-  attempt = $form.find( "input[name='result-attempt']" ).val(),
+  var $form = $(this),
+   attempt = $form.find( "input[name='result-attempt']" ).val(),
   userAlias = $form.find( "input[name='user-alias']" ).val();
 // Compose the data in the format that the API is expecting
 var data = { user: { alias: userAlias}, multiplication:
