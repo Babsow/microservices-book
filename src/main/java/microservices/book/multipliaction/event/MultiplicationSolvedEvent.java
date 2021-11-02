@@ -11,7 +11,7 @@ import lombok.ToString;
 @Getter
 @ToString
 @EqualsAndHashCode
-public class  MultiplicationEvent implements Serializable {
+public class  MultiplicationSolvedEvent implements Serializable {
       private final Long multiplicationResultAttempId;
       private final Long userId;
       private final boolean correct;

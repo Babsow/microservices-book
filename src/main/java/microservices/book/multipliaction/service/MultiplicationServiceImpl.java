@@ -12,6 +12,8 @@ import org.springframework.util.Assert;
 import microservices.book.multipliaction.domain.Multiplication;
 import microservices.book.multipliaction.domain.MultiplicationResultAttempt;
 import microservices.book.multipliaction.domain.User;
+import microservices.book.multipliaction.event.EventDispatcher;
+import microservices.book.multipliaction.event.MultiplicationSolvedEvent;
 import microservices.book.multipliaction.repository.MultiplicationResultAttempRepository;
 import microservices.book.multipliaction.repository.UserRepository;
 
@@ -23,14 +25,17 @@ public class MultiplicationServiceImpl implements MultiplicationService{
   private MultiplicationResultAttempRepository 
           attempRepository;
   private UserRepository userRepository;
+  private EventDispatcher eventDispatcher;
   @Autowired
-  public MultiplicationServiceImpl(RandomGeneratorService randomGeneratorService,
+  public MultiplicationServiceImpl(final RandomGeneratorService randomGeneratorService,
                                     final MultiplicationResultAttempRepository
                                             attemptRepository,
-                                            final UserRepository userRepository){
+                                            final UserRepository userRepository,
+                                            final EventDispatcher eventDispatcher){
     this.randomGeneratorService = randomGeneratorService;
     this.attempRepository = attemptRepository;
     this.userRepository = userRepository;
+    this.eventDispatcher = eventDispatcher;
   }
 
   @Override
@@ -57,6 +62,10 @@ public class MultiplicationServiceImpl implements MultiplicationService{
                                                 
 
     attempRepository.save(checkedAttempt);
+
+    eventDispatcher.send(new MultiplicationSolvedEvent(checkedAttempt.getId(),
+                                                      checkedAttempt.getUser().getId(),
+                                                      checkedAttempt.isCorrect()));
     return correct ;
   }
 
